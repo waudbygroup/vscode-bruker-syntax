@@ -1,0 +1,155 @@
+{
+	"$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+	"name": "Bruker",
+	"patterns": [
+		{ "include": "#parametercomment"	},
+		{ "include": "#comment"	},
+		{ "include": "#file" },
+		{ "include": "#preprocessor" },
+		{ "include": "#keywords" },
+		{ "include": "#commands" },
+		{ "include": "#looping" },
+		{ "include": "#labels" },
+		{ "include": "#pulses" },
+		{ "include": "#powerlevels" },
+		{ "include": "#gradients" },
+		{ "include": "#shapes" },
+		{ "include": "#phases" },
+		{ "include": "#channels" },
+		{ "include": "#strings" }
+	],
+	"repository": {
+		"parametercomment": {
+			"patterns": [{
+				"match": "^;(.+\\b)\\s*:\\s*(.+)",
+				"name": "comment.line.bruker",
+				"captures": {
+					"1": {"name":"keyword.control.bruker"},
+					"2": {"name":"variable.bruker"}
+				}
+			}]
+		},
+		"comment": {
+			"patterns": [{
+				"name": "comment.line.bruker",
+				"match": ";.*$"
+			},
+			{
+				"name": "comment.block.bruker",
+				"begin": "/\\*",
+				"end": "\\*/"
+			}]
+		},
+		"file": {
+			"patterns": [{
+				"name": "storage.type.bruker",
+				"begin": "<",
+				"end": ">"
+			}]
+		},
+		"preprocessor": {
+			"patterns": [{
+				"name": "keyword.control.directive.bruker",
+				"match": "#\\s*[a-zA-Z]+\\b(.*)?",
+				"captures": {
+					"1": {"name":"constant.language.bruker"}
+				}
+			}]
+		},
+		"keywords": {
+			"patterns": [{
+				"name": "keyword.control.bruker",
+				"match": "\\b(larger|center|lalign|ralign|BLKGRAD|UNBLKGRAD|zd|ze|prosol|fq)\\b"
+			}]
+		},
+		"labels": {
+			"patterns": [{
+				"name": "variable.bruker",
+				"match": "^[0-9]+\\b"
+			}]
+		},
+		"commands": {
+			"patterns": [{
+				"name": "keyword.control.bruker",
+				"match": "\\b(define|if|else|goto|print|aqseq|exit|F[0-9]QF|F[0-9]PH|F[0-9]I|F[0-9]EA)\\b"
+			}]
+		},
+		"powerlevels": {
+			"patterns": [{
+				"name": "keyword.control.bruker",
+				"match": "\\b(pl[0-9]+)\\b"
+			}]
+		},
+		"pulses": {
+			"patterns": [{
+				"name": "keyword.control.bruker",
+				"match": "\\b(p[0-9]+|cw|cpds?[0-9]+|do)\\b"
+			}]
+		},
+		"phases": {
+			"patterns": [{
+				"name": "entity.name.function.bruker",
+				"match": "\\b(ph[0-9]+)\\b"
+			}]
+		},
+		"gradients": {
+			"patterns": [{
+				"name": "constant.language.bruker",
+				"match": "\\b(gp[0-9]+)\\b"
+			}]
+		},
+		"shapes": {
+			"patterns": [{
+				"name": "constant.language.bruker",
+				"match": "\\b(sp[0-9]+)\\b"
+			}]
+		},
+		"channels": {
+			"patterns": [{
+				"match": ":(f[1-4])",
+				"captures": {
+					"1": {"name":"constant.language.bruker"}
+				}
+			}]
+		},
+		"looping": {
+			"patterns": [{
+				"match": "(lo to) ([0-9]+) (times) (.+\\b)",
+				"captures": {
+					"1": {"name":"keyword.control.bruker"},
+					"2": {"name":"variable.bruker"},
+					"3": {"name":"keyword.control.bruker"},
+					"4": {"name":"entity.name.function.bruker"}
+				}
+			},
+			{
+				"match": "(mc) (#[0-9]+) (to) ([0-9]+\\b)",
+				"captures": {
+					"1": {"name":"keyword.control.bruker"},
+					"2": {"name":"entity.name.function.bruker"},
+					"3": {"name":"keyword.control.bruker"},
+					"4": {"name":"variable.bruker"}
+				}
+			},
+			{
+				"match": "(go)=([0-9]+)",
+				"captures": {
+					"1": {"name":"keyword.control.bruker"},
+					"2": {"name":"variable.bruker"}
+				}
+			}]
+		},
+		"strings": {
+			"name": "string.quoted.double.bruker",
+			"begin": "\"",
+			"end": "\"",
+			"patterns": [
+				{
+					"name": "constant.character.escape.bruker",
+					"match": "\\\\."
+				}
+			]
+		}
+	},
+	"scopeName": "source.bruker"
+}

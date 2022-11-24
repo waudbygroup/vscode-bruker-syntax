@@ -1,0 +1,25 @@
+{
+  "name": "bruker",
+  "displayName": "Bruker Pulse Programming",
+  "description": "Syntax highlighting for Bruker NMR pulse programs",
+  "version": "0.0.1",
+  "engines": {
+    "vscode": "^1.73.0"
+  },
+  "categories": [
+    "Programming Languages"
+  ],
+  "contributes": {
+    "languages": [{
+      "id": "bruker",
+      "aliases": ["Bruker", "bruker"],
+      "extensions": [""],
+      "configuration": "./language-configuration.json"
+    }],
+    "grammars": [{
+      "language": "bruker",
+      "scopeName": "source.bruker",
+      "path": "./syntaxes/bruker.tmLanguage.json"
+    }]
+  }
+}
